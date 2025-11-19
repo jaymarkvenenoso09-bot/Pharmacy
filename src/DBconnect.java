@@ -18,11 +18,11 @@ import java.sql.*;
 public class DBconnect {
     
     
-    public Connection Connect(){
+    public void Connect(){
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy", "root","root");
+             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy", "root","");
              System.out.println("Database Connected Successfully!");
              Statement stm = con.createStatement();
              ResultSet rs = stm.executeQuery("select * from medicines;");
@@ -38,6 +38,6 @@ public class DBconnect {
         } catch (SQLException ex) {
             Logger.getLogger(DBconnect.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return con;
+      
     }
 }
