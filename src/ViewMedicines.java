@@ -24,18 +24,19 @@ import javax.swing.SpinnerNumberModel;
 public class ViewMedicines extends javax.swing.JFrame {
 
          Connection con = null;
+          Billing bill;
 
-    /**
-     * Creates new form ViewMedicines
-     */
+ 
     public ViewMedicines() {
         initComponents();
         Connect();
+        setLocationRelativeTo(null);
         
         jSpinner1.setModel(new SpinnerNumberModel(1, 1, 10, 1));
         jSpinner2.setModel(new SpinnerNumberModel(1, 1, 10, 1));
         jSpinner3.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-        jSpinner5.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        jSpinner4.setModel(new SpinnerNumberModel(1, 1, 10, 1));
+        
 
 
         
@@ -82,8 +83,11 @@ public class ViewMedicines extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jSpinner5 = new javax.swing.JSpinner();
+        jSpinner4 = new javax.swing.JSpinner();
         label = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
 
         editButton.setFont(new java.awt.Font("Century", 1, 12)); // NOI18N
         editButton.setText("Remove");
@@ -131,7 +135,7 @@ public class ViewMedicines extends javax.swing.JFrame {
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Medicine no.1 Pic");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Coenzyme.jpg"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(255, 51, 51));
@@ -145,7 +149,7 @@ public class ViewMedicines extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Medicine ");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Zinacap.jpg"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-TGP.jpg"))); // NOI18N
@@ -153,7 +157,7 @@ public class ViewMedicines extends javax.swing.JFrame {
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Medicine no.1 Pic");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Maxicap.jpg"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton5.setBackground(new java.awt.Color(255, 51, 51));
@@ -182,6 +186,18 @@ public class ViewMedicines extends javax.swing.JFrame {
         label.setForeground(new java.awt.Color(0, 0, 0));
         label.setText("₱168.00");
 
+        label1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label1.setForeground(new java.awt.Color(0, 0, 0));
+        label1.setText("₱112.88");
+
+        label2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label2.setForeground(new java.awt.Color(0, 0, 0));
+        label2.setText("₱110.25");
+
+        label3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        label3.setForeground(new java.awt.Color(0, 0, 0));
+        label3.setText("₱55.13");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,26 +219,34 @@ public class ViewMedicines extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(69, 69, 69)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
-                                        .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -248,8 +272,10 @@ public class ViewMedicines extends javax.swing.JFrame {
                             .addComponent(label)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jSpinner5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label2))
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -260,12 +286,14 @@ public class ViewMedicines extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label1)
+                    .addComponent(label3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -285,27 +313,35 @@ public class ViewMedicines extends javax.swing.JFrame {
     
  
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        int qty = (int)jSpinner1.getValue();
-        JOptionPane.showMessageDialog(null, "Added to Cart" + qty);
-        
-        Vitamin1 vit1 = new Vitamin1();
-        
-        vit1.setVisible(true);
-        this.dispose();
-        
-        String name = "Suplimax";
-        double price = Double.parseDouble(label.getText());
-       
+             
+         
+  
+        try {
+          
+                 Statement stmt = con.createStatement();
+                 ResultSet rs = stmt.executeQuery("Select * from medicines");
+                 
+                 if(rs.next()){
+                    String name = rs.getString("name");
+                    double price = rs.getDouble("price");
+                    int qty = (int)jSpinner1.getValue();
+                 JOptionPane.showMessageDialog(null, "Added to Cart" + qty);
+                    
+                 
+                 bill = Billing.instance;
+                 if (bill == null) bill = new Billing();
+                    bill.setVisible(true);
+                    this.dispose();
+                    bill.addToTable(name, qty, price);
+                 
+            
+        }
+                 
 
-    // Open Billing JFrame
-    Billing bill = new Billing();
-    bill.setVisible(true);
-
-    // Send the values to Billing
-    bill.addToTable(name, price, qty);
-    
-    
+                 
+             } catch (SQLException ex) {
+                 Logger.getLogger(ViewMedicines.class.getName()).log(Level.SEVERE, null, ex);
+             }
         
         
  
@@ -322,12 +358,42 @@ public class ViewMedicines extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int qty = (int)jSpinner2.getValue();
-        JOptionPane.showMessageDialog(null, "Added to Cart" + qty);
         
         
-        SpinnerNumberModel model = new SpinnerNumberModel(1, 1, 10, 1);
-        jSpinner2.setModel(model);
+        
+         try {
+          
+                 Statement stmt = con.createStatement();
+                 ResultSet rs = stmt.executeQuery("Select * from medicines limit 1 offset 1");
+                 
+                 if(rs.next()){
+                 
+                
+                      String name = rs.getString("name");
+                    double price = rs.getDouble("price");
+                    int qty = (int)jSpinner4.getValue();
+                 JOptionPane.showMessageDialog(null, "Added to Cart" + qty);
+                    
+                    bill = Billing.instance;
+                    if (bill == null) bill = new Billing();
+                    bill.setVisible(true);
+                    this.dispose();
+                    bill.addToTable(name, qty, price);
+                     
+                 
+                   
+                 
+            
+        }
+                 
+
+                 
+             } catch (SQLException ex) {
+                 Logger.getLogger(ViewMedicines.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
+        
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -336,10 +402,74 @@ public class ViewMedicines extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        
+        try {
+          
+                 Statement stmt = con.createStatement();
+                 ResultSet rs = stmt.executeQuery("Select * from medicines limit 1 offset 3");
+                 
+                 if(rs.next()){
+                 
+                
+                      String name = rs.getString("name");
+                    double price = rs.getDouble("price");
+                    int qty = (int)jSpinner2.getValue();
+                 JOptionPane.showMessageDialog(null, "Added to Cart" + qty);
+                    
+                    bill = Billing.instance;
+                    if (bill == null) bill = new Billing();
+                    bill.setVisible(true);
+                    this.dispose();
+                    bill.addToTable(name, qty, price);
+                     
+                 
+                   
+                 
+            
+        }
+                 
+
+                 
+             } catch (SQLException ex) {
+                 Logger.getLogger(ViewMedicines.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        
+        try {
+          
+                 Statement stmt = con.createStatement();
+                 ResultSet rs = stmt.executeQuery("Select * from medicines limit 1 offset 2");
+                 
+                 if(rs.next()){
+                 
+                
+                      String name = rs.getString("name");
+                    double price = rs.getDouble("price");
+                    int qty = (int)jSpinner3.getValue();
+                 JOptionPane.showMessageDialog(null, "Added to Cart" + qty);
+                    
+                    bill = Billing.instance;
+                    if (bill == null) bill = new Billing();
+                    bill.setVisible(true);
+                    this.dispose();
+                    bill.addToTable(name, qty, price);
+                     
+                 
+                   
+                 
+            
+        }
+                 
+
+                 
+             } catch (SQLException ex) {
+                 Logger.getLogger(ViewMedicines.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
       
        
@@ -402,7 +532,10 @@ public class ViewMedicines extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner5;
+    private javax.swing.JSpinner jSpinner4;
     private javax.swing.JLabel label;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,6 +18,7 @@ public class MainUI extends javax.swing.JFrame {
      */
     public MainUI() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -35,8 +36,9 @@ public class MainUI extends javax.swing.JFrame {
         Remedies = new javax.swing.JButton();
         Beauty = new javax.swing.JButton();
         Device = new javax.swing.JButton();
-        Groceries = new javax.swing.JButton();
+        groceries = new javax.swing.JButton();
         cart = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,17 +56,44 @@ public class MainUI extends javax.swing.JFrame {
         });
 
         Remedies.setText("Home Remedies");
+        Remedies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RemediesActionPerformed(evt);
+            }
+        });
 
         Beauty.setText("Beauty & Personal Care");
+        Beauty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BeautyActionPerformed(evt);
+            }
+        });
 
         Device.setText("Medical Devices");
+        Device.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeviceActionPerformed(evt);
+            }
+        });
 
-        Groceries.setText("Groceries");
+        groceries.setText("Groceries");
+        groceries.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groceriesActionPerformed(evt);
+            }
+        });
 
         cart.setText("View Cart");
         cart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cartActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("View Profile");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -77,7 +106,9 @@ public class MainUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(828, 828, 828)
+                        .addGap(735, 735, 735)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
                         .addComponent(cart))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbutton1)
@@ -88,8 +119,8 @@ public class MainUI extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(Device, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(Groceries, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(groceries, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,14 +131,16 @@ public class MainUI extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(cart, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cart, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbutton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Remedies, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Beauty, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Device, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Groceries, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(groceries, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(317, Short.MAX_VALUE))
         );
 
@@ -122,9 +155,7 @@ public class MainUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 111, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -142,7 +173,54 @@ public class MainUI extends javax.swing.JFrame {
 
     private void cartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartActionPerformed
         // TODO add your handling code here:
+        
+        Billing bill;
+        bill = Billing.instance;
+        if (bill == null) bill = new Billing();
+                    bill.setVisible(true);
+        this.dispose();
+      
     }//GEN-LAST:event_cartActionPerformed
+
+    private void RemediesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemediesActionPerformed
+        // TODO add your handling code here:
+        
+        Homeremedies home = new Homeremedies();
+        home.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RemediesActionPerformed
+
+    private void BeautyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeautyActionPerformed
+        // TODO add your handling code here:
+        
+        Beauty be = new Beauty();
+        be.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BeautyActionPerformed
+
+    private void DeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeviceActionPerformed
+        // TODO add your handling code here:
+        MedicalDevice med = new MedicalDevice();
+        med.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_DeviceActionPerformed
+
+    private void groceriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groceriesActionPerformed
+        // TODO add your handling code here:
+        
+        Groceries gro = new Groceries();
+        gro.setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_groceriesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Viewprofile view = new Viewprofile();
+        view.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,9 +260,10 @@ public class MainUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Beauty;
     private javax.swing.JButton Device;
-    private javax.swing.JButton Groceries;
     private javax.swing.JButton Remedies;
     private javax.swing.JButton cart;
+    private javax.swing.JButton groceries;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbutton1;

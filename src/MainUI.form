@@ -32,10 +32,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="111" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -55,7 +52,9 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="828" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="735" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="cart" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -67,10 +66,10 @@
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="Device" min="-2" pref="168" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="Groceries" min="-2" pref="166" max="-2" attributes="0"/>
+                          <Component id="groceries" min="-2" pref="166" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -84,7 +83,10 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="cart" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="cart" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
@@ -93,7 +95,7 @@
                       <Component id="Remedies" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
                       <Component id="Beauty" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
                       <Component id="Device" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
-                      <Component id="Groceries" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Component id="groceries" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="317" max="32767" attributes="0"/>
               </Group>
@@ -126,21 +128,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Home Remedies"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemediesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Beauty">
           <Properties>
             <Property name="text" type="java.lang.String" value="Beauty &amp; Personal Care"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BeautyActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Device">
           <Properties>
             <Property name="text" type="java.lang.String" value="Medical Devices"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeviceActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Groceries">
+        <Component class="javax.swing.JButton" name="groceries">
           <Properties>
             <Property name="text" type="java.lang.String" value="Groceries"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groceriesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cart">
           <Properties>
@@ -148,6 +162,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cartActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Profile"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
