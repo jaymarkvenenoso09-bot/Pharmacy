@@ -1,4 +1,3 @@
-import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,6 +8,16 @@ import javax.swing.JOptionPane;
  *
  * @author Marie Arlene
  */
+
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import javax.swing.JOptionPane;
 public class Pharmacy extends javax.swing.JFrame {
 
     /**
@@ -34,11 +43,11 @@ public class Pharmacy extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         login = new javax.swing.JButton();
         Cancel = new javax.swing.JButton();
-        user = new javax.swing.JTextField();
+        email1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        pass = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,9 +71,9 @@ public class Pharmacy extends javax.swing.JFrame {
             }
         });
 
-        user.addActionListener(new java.awt.event.ActionListener() {
+        email1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
+                email1ActionPerformed(evt);
             }
         });
 
@@ -75,13 +84,18 @@ public class Pharmacy extends javax.swing.JFrame {
 
         jLabel3.setText("PASSWORD: ");
 
-        pass.addActionListener(new java.awt.event.ActionListener() {
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
 
         jButton1.setText("Sign up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,8 +118,8 @@ public class Pharmacy extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(14, 14, 14)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pass)
-                            .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                            .addComponent(password)
+                            .addComponent(email1, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                         .addContainerGap(133, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,11 +138,11 @@ public class Pharmacy extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(email1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -154,41 +168,70 @@ public class Pharmacy extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        String username = new String(user.getText());
-        String password = new String(pass.getPassword());
+    String email = email1.getText();
+    String pass = new String(password.getPassword());
 
-        if(username.equalsIgnoreCase("Jaymark") && password.equals("pogiako")){
-            
-            
+    try {
+        Connection con = DBconnect.getConnection();
+        PreparedStatement ps = con.prepareStatement(
+            "SELECT * FROM users WHERE email=? AND password=?"
+        );
+
+        ps.setString(1, email);
+        ps.setString(2, pass);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
            
-            MainUI main = new MainUI();
+            LoggedInUser.id = rs.getInt("id");
+            LoggedInUser.firstName = rs.getString("first_name");
+            LoggedInUser.email = rs.getString("email");
+            LoggedInUser.lastName = rs.getString("last_name");
 
-            main.setVisible(true);
+            JOptionPane.showMessageDialog(this, 
+                "Welcome " + LoggedInUser.firstName + " " +LoggedInUser.lastName);
 
+           
+            new MainUI().setVisible(true);
             this.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "Invalid Login!");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
-        }
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, 
+            "Login Error: " + e.getMessage());
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_loginActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         // TODO add your handling code here:
         
-        user.setText("");
-        pass.setText("");
+        email1.setText("");
+        password.setText("");
      
     }//GEN-LAST:event_CancelActionPerformed
 
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+    private void email1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email1ActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_userActionPerformed
+    }//GEN-LAST:event_email1ActionPerformed
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_passActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Register reg = new Register();
+        reg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,13 +270,13 @@ public class Pharmacy extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
+    private javax.swing.JTextField email1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton login;
-    private javax.swing.JPasswordField pass;
-    private javax.swing.JTextField user;
+    private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
 }

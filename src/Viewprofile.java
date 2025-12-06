@@ -161,14 +161,21 @@ public class Viewprofile extends javax.swing.JFrame {
 }
     
     public void loadPurchaseHistory() {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // clear existing rows
+        
+        int userId = LoggedInUser.id; // get currently logged in user
 
     try {
-        Connection con = DBconnect.getConnection(); 
-        String sql = "SELECT * FROM purchasehistory ORDER BY purchase_date DESC";
+        Connection con = DBconnect.getConnection();  
+
+        // Query the correct table
+        String sql = "SELECT id, name, qty, price, total FROM purchasehistory WHERE user_id = ?";
         PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, userId);
+
         ResultSet rs = pst.executeQuery();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // clear existing rows
 
         while (rs.next()) {
             int id = rs.getInt("id");
@@ -176,24 +183,16 @@ public class Viewprofile extends javax.swing.JFrame {
             int qty = rs.getInt("qty");
             double price = rs.getDouble("price");
             double total = rs.getDouble("total");
-            Timestamp purchaseDate = rs.getTimestamp("purchase_date");
 
-            // Format date to String
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String formattedDate = sdf.format(purchaseDate);
-
-            // Add row to JTable
-            model.addRow(new Object[]{id, name, qty, price, total, formattedDate});
+            // Add to table
+            model.addRow(new Object[]{id, name, qty, price, total});
         }
 
-        rs.close();
-        pst.close();
-        con.close();
-
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error loading purchase history.");
         e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Failed to load purchase history!");
     }
+    
 }
     /**
      * @param args the command line arguments

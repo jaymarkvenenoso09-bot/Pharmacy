@@ -414,45 +414,49 @@ public class Billing extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+           int userId = LoggedInUser.id; // Get the currently logged-in user's ID
 
-    if (model.getRowCount() == 0) {
-        JOptionPane.showMessageDialog(this, "Your cart is empty!");
-        return;
-    }
+DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-    try {
-        Connection con = DBconnect.getConnection();
+if (model.getRowCount() == 0) {
+    JOptionPane.showMessageDialog(this, "Your cart is empty!");
+    return;
+}
 
-        String sql = "INSERT INTO purchasehistory ( name, qty, price, total) VALUES ( ?, ?, ?, ?)";
-        PreparedStatement pst = con.prepareStatement(sql);
+try {
+    Connection con = DBconnect.getConnection();
 
-        for (int i = 0; i < model.getRowCount(); i++) {
-           
-            String name = (String) model.getValueAt(i, 0);
-            int qty = (Integer) model.getValueAt(i, 1);
-            double price = (Double) model.getValueAt(i, 2);
-            double total = price * qty;
+    String sql = "INSERT INTO purchasehistory (user_id, name, qty, price, total) VALUES (?, ?, ?, ?, ?)";
+    PreparedStatement pst = con.prepareStatement(sql);
 
-            
-            pst.setString(1, name);
-            pst.setInt(2, qty);
-            pst.setDouble(3, price);
-            pst.setDouble(4, total);
+    for (int i = 0; i < model.getRowCount(); i++) {
+    String name = (String) model.getValueAt(i, 0);
 
-            pst.executeUpdate();
-        }
+    // Get Quantity properly
+    int qty = ((Number) model.getValueAt(i, 1)).intValue();
 
-        JOptionPane.showMessageDialog(this, "Checkout complete! Purchase saved.");
-        
-        // Clear table after checkout
-        model.setRowCount(0);
-        updateSummary();
+    // Get Price properly
+    double price = ((Number) model.getValueAt(i, 2)).doubleValue();
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error saving purchase history: " + e.getMessage());
-        e.printStackTrace();
-    }
+    double total = price * qty;
+
+    pst.setInt(1, userId);    // associate purchase with user
+    pst.setString(2, name);
+    pst.setInt(3, qty);
+    pst.setDouble(4, price);
+    pst.setDouble(5, total);
+
+    pst.executeUpdate();
+}
+
+    JOptionPane.showMessageDialog(this, "Checkout complete! Purchase saved.");
+    model.setRowCount(0);
+    updateSummary();
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error saving purchase history: " + e.getMessage());
+    e.printStackTrace();
+}
 
         
         

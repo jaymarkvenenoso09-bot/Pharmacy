@@ -15,29 +15,33 @@ import java.sql.*;
  *
  * @author Marie Arlene
  */
+    
+import java.sql.Connection;
+import java.sql.DriverManager;
 public class DBconnect {
     
-    
-    public void Connect(){
-        Connection con = null;
+
+
+
+
+    public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy", "root","");
-             System.out.println("Database Connected Successfully!");
-             Statement stm = con.createStatement();
-             ResultSet rs = stm.executeQuery("select * from medicines;");
-             
-             while(rs.next()){
-                 String name = rs.getString("name");
-                 System.out.println(name);
-                 
-             }
-             
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBconnect.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBconnect.class.getName()).log(Level.SEVERE, null, ex);
+
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/pharmacy",
+                "root",
+                ""
+            );
+
+            System.out.println("Database Connected Successfully!");
+            return con;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-      
     }
 }
+
+

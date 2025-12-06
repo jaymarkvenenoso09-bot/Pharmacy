@@ -109,7 +109,7 @@ public class ViewMedicines extends javax.swing.JFrame {
         jLabel1.setText("Vitamins & Supplements");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/suplimax (2).jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Suplimax_imresizer.png"))); // NOI18N
         jLabel2.setText("Medicine no.1 Pic");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 

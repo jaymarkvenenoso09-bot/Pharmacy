@@ -94,7 +94,6 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        cart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/download.png"))); // NOI18N
         cart.setText("View Cart");
         cart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +101,6 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pf.jpg"))); // NOI18N
         jButton1.setText("View Profile");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

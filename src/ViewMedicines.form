@@ -211,7 +211,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/suplimax (2).jpg"/>
+              <Image iconType="3" name="/images/Suplimax_imresizer.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Medicine no.1 Pic"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
